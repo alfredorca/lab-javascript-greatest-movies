@@ -14,28 +14,80 @@ function getAllDirectors(array){
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function howManyMovies(array) {
   let steven =  array.filter(element => element.director === 'Steven Spielberg' && element.genre.includes('Drama'));
-  return steven;
+  return steven.length; 
 }
 
-console.log(howManyMovies(movies));
+// console.log(howManyMovies(movies));
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(array) {
+  let totalScores = 0;
+  const allScores = array.map(value => value.score)
+  for (let i = 0; i < array.length; i++) {
+    totalScores += array[i].score;    
+  }
+  return Number((totalScores / allScores.length).toFixed(2))
+}
+
+// console.log(scoresAverage(movies));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore() {}
+function dramaMoviesScore(array) {
+  let drama = array.filter(element => element.genre.includes('Drama'));
+  let dramaScores = drama.reduce((acc, item) => acc + item.score, 0)
+  return Number((dramaScores / drama.length).toFixed(2))
+}
+
+// console.log(dramaMoviesScore(movies));
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear() {}
+function orderByYear(array) {
+  let ordered = JSON.parse(JSON.stringify(array))
+   ordered = ordered.sort((a, b) => {
+     if (a.year > b.year) {
+       return 1;
+     } else if (a.year < b.year) {
+       return -1;
+     } else if (a.year === b.year) {
+       if (a.title > b.title) {
+         return 1;
+       } else {
+         return -1;
+       }
+     }
+   });
+  return ordered;
+}
+
+// console.log(orderByYear(movies));
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically() {}
+function orderAlphabetically(array) {
+  let ordered = JSON.parse(JSON.stringify(array))
+  ordered = ordered.sort((a, b) => {
+    if (a.title > b.title) {
+      return 1;
+    } else if (a.title < b.title) {
+      return -1
+    }
+  })
+  return ordered;
+}
+
+// console.log(orderAlphabetically(movies));
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes() {}
+// function turnHoursToMinutes(array) {
+//   let newArray = JSON.parse(JSON.stringify(array));
+//   let hours = newArray.duration.split(h);
+//   let numberOfHours = Number(hours * 60)
+//   return numberOfHours
+// }
+
+console.log(turnHoursToMinutes(movies));
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
-function bestYearAvg() {}
+// function bestYearAvg() {}
 
 
 
